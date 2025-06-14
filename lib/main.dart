@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'routes.dart';
+import 'theme/app_theme.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // NECESARIO para splash y futuras integraciones
+  // Optional: delay para que se vea más tiempo el splash
+  await Future.delayed(Duration(seconds: 2));
+  
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -12,16 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Monkey Monitor',
+      theme: AppTheme.lightTheme,
       routerConfig: appRouter,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
-        scaffoldBackgroundColor: Colors.white,
-        textTheme: const TextTheme(
-          bodyLarge: TextStyle(fontSize: 16),
-          headlineSmall: TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ),
     );
   }
 }
